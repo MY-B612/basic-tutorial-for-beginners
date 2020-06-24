@@ -4,7 +4,7 @@
 
 ##### 1.  准备工作：熟悉下基本的命令和操作
 
-  * linux系统的基本常识和常用命令，pwd, ls, mv, cd, rm, cp等: [linux基本命令](https://www.cnblogs.com/hzy168/p/10313441.html)
+  * linux系统的基本常识和常用命令，如pwd, ls, mv, cd, rm, cp等: [linux基本命令](https://www.cnblogs.com/hzy168/p/10313441.html)
   * 熟悉 tmux的使用：[tmux使用教程](http://www.ruanyifeng.com/blog/2019/10/tmux.html)
   * 熟悉自己所需的编程环境，如python的IDE anaconda等的基本操作
 
@@ -14,7 +14,7 @@
   - user name: \****
   - password: \****
 -   配置服务器账户： session->SSH-> 填写 remote host; specify name; port->OK 左侧边栏会出现配置好的服务器列表，双击连接，首次连接需要输入密码
-- 注意：远程非校园网访问需要下载vpn软件并连接[vpn](http://info.tsinghua.edu.cn/out/help.jsp)
+- 注意：远程非校园网访问需要下载vpn软件并连接: [清华大学vpn使用指南](http://info.tsinghua.edu.cn/out/help.jsp) [word](./Linux server tutorial/Windows Pulse Secure Client installation instructions.docx)
 
 ##### 3. 个人文件夹
 
