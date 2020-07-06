@@ -13,12 +13,12 @@
   - remote host: \****
   - user name: \****
   - password: \****
--   配置服务器账户： session->SSH-> 填写 remote host; specify name; port->OK 左侧边栏会出现配置好的服务器列表，双击连接，首次连接需要输入密码
+-   配置服务器账户： session->SSH-> 填写 remote host; specify name; port->OK 左侧边栏会出现配置好的服务器列表，双击连接，首次连接需要输入密码，输入后根据提示保存密，码则下次不用再输入密码。
 - 注意：远程非校园网访问需要下载vpn软件并连接: [清华大学vpn使用指南](http://info.tsinghua.edu.cn/out/help.jsp) [word](../Linux server tutorial/Windows Pulse Secure Client installation instructions.docx)
 
 ##### 3. 个人文件夹
 
-  - 用户文件夹主要有两个，主目录: /home/guest, 数据目录: /data/guest， 个人文件放在数据目录下，主目录空间较小，一般不放东西
+  - 用户文件夹主要有两个，主目录: /home/[username], 数据目录: /data/[username]， 个人文件放在数据目录下，主目录空间较小，一般不放东西
   - 服务器文件查看与上传：直接从mobaxtrem左侧边栏选到sftp项目可以看到服务器目录树，切到相应目录下将本地文件直接拖入即可上传，基本的重命名和删除操作也可以从此处操作（内网不费流量）
 
 ##### 4. 常用命令
@@ -50,13 +50,13 @@
        - export CUDA_VISIBLE_DEVICES=1, 2 （指定使用编号为1和2的GPU）
      - ​	输入 python  your_file.py， 回车即可运行
      - 也可以通过运行 CUDA_VISIBLE_DEVICES=1   python  your_file.py 在每次运行程序时，给该程序指定不同GPU
-   - matlab：运行 matlab，出来图形界面； 或者运行 mrun [name], (注意不需要加.m), 直接执行代码（无图形界面）
+   - matlab：运行 matlab，出来图形界面； 或者运行 mrun [username], (注意不需要加.m), 直接执行代码（无图形界面）
 
 ##### 6. 注意事项
 
-  - 只在自己的目录下进行工作，不要随便更改非个人目录下的文件 （特别注意慎用删除命令，尽量在侧边栏的图形化文件列表里删）
+  - 只在自己的个人目录（/data/[username], /home/[username]）下进行工作，不要随便更改非个人目录下的文件 （特别注意慎用删除命令）
   - 服务器的各种软件运行环境（如TensorFlow等）基本都是配置好的，一般不需要自己配置，可以先查看是不是可以用，不行再自己配置
-  - GPU只有4块，尽量不要自己占完，GPU状态监控可以运行 gpustat -cpu -i 3 查看实时状态
+  - 每个服务器GPU只有4块，尽量不要自己占完，占用总数尽量不要超过3块（防止温度过高），可以运行 `gpustat -cpu -i 3` 查看GPU实时状态。
   - 不懂的地方先自己百度下，不确定的操作可以问学长
 
 ##### 7. 其他操作如通过VScode，Pycharm远程连接服务器如有需要，请自行学习
