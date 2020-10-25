@@ -238,11 +238,13 @@ conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
         # sudo apt-get install -f # Install dependencies
         ```
 
-2. 本地端 安装 VS Code 并配置 VS Code Remote Workspace 远程访问
+2. 将远程服务器联网，并在远程终端输入 `code` 打开 vscode，安装需要的插件，如 `python` 插件。否则无法在远程调试相关代码
+
+3. 本地端 安装 VS Code 并配置 VS Code Remote Workspace 远程访问
 
     > 请参考网络教程
 
-3. reference
+4. reference
 
     1. [VS Code Installation](https://code.visualstudio.com/docs/setup/linux) 
     2. [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)

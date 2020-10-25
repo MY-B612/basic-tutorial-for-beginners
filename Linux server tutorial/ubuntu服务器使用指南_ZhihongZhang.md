@@ -14,7 +14,7 @@
   - user name: \****
   - password: \****
 -   配置服务器账户： session->SSH-> 填写 remote host; specify name; port->OK 左侧边栏会出现配置好的服务器列表，双击连接，首次连接需要输入密码，输入后根据提示保存密，码则下次不用再输入密码。
-- 注意：远程非校园网访问需要下载vpn软件并连接: [清华大学vpn使用指南](http://info.tsinghua.edu.cn/out/help.jsp) [word](../Linux server tutorial/Windows Pulse Secure Client installation instructions.docx)
+- 注意：远程非校园网访问需要下载vpn软件并连接: [清华大学vpn使用指南](http://info.tsinghua.edu.cn/out/help.jsp) [word](./Windows Pulse Secure Client installation instructions.docx)
 
 ##### 3. 个人文件夹
 
