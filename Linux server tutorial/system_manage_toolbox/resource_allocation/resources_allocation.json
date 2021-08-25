@@ -1,0 +1,21 @@
+{
+    "ssd": {
+        "yrz": "/ssd/0/yrz",
+        "zzh": "/ssd/2/zzh"
+    },
+    "hdd": {
+        "yrz": "/hdd/0/yrz",
+        "zzh": "/hdd/1/zzh"
+    },
+    "gpu": {
+        "yrz": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "zzh": [
+            0
+        ]
+    }
+}
