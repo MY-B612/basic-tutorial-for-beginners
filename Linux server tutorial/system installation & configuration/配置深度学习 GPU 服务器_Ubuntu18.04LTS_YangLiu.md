@@ -27,7 +27,6 @@
     ```
 4. 硬盘分区并挂载（已有硬盘可直接挂载），也可通过图形界面操作。已有硬盘直接挂载即通过 UUID 与 `/etc/fstab` 绑定硬盘/分区和目录。例如 SATA SSD 2TB 拟挂载至 `/ssd`，首先 `sudo fdisk -l` 找到大小为 2TB 的盘，记录 `Disk /dev/sdc`，然后 `sudo blkid` 找到 `/dev/sdc` 的 UUID，接着创建挂载文件夹 `sudo mkdir /ssd`，再在 `/etc/fstab` 末追加一行 `UUID=b4c93...  /ssd  ext4  defaults  0  2`，如果同时挂载多个硬盘，依次记录 UUID 并创建挂载文件夹，最后重新挂载所有硬盘 `mount -av`，可通过重启确认是否挂载成功。
 5. 显卡驱动以及 CUDA, CuDNN 和 TensorRT。强烈建议按照 TensorFlow 的最新的 [GPU guide 安装](https://www.tensorflow.org/install/gpu?hl=zh-cn)。以下摘录当前的 Ubuntu 18.04 (CUDA 10.1) 的安装步骤。（注意：安装包会下载到当前目录下，注意保证当前目录的空间足够用； 确保选择的 Ubuntu 版本和当前系统一致）
-
     ```bash
     # Add NVIDIA package repositories
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.1.243-1_amd64.deb
@@ -55,7 +54,6 @@
         libnvinfer-dev=6.0.1-1+cuda10.1 \
         libnvinfer-plugin6=6.0.1-1+cuda10.1
     ```
-
 
 
 #### 2.2 可能出现的问题和解决方案
@@ -120,7 +118,7 @@
 
 - 报错 `Unable to locate package nvidia-xxx`“：查看 `/etc/apt/sources.list.d/` 文件夹下是不是有两个软件源列表文件 cuda.list 和 nvidia-machine-learning.list 并且不为空。如果不存在或者为空，需要卸载（`sudo dpkg -P cuda-repo-ubuntu1804` ；`sudo dpkg -P nvidia-machine-learning-repo-ubuntu1804` )并按照原教程重新安装 cuda-repo-ubuntu1804 或者 nvidia-machine-learning-repo-ubuntu1804 两个包并 `sudo apt-get update` 软件源。
 
-- `nvidia-smi` 命令报错 `Failed to initialize NVML: Driver`：可能重启一下就好了，如果不行再考虑是不是显卡驱动不匹配的问题
+- nvidia-smi 报错 `Failed to initialize NVML: Driver`：可能重启一下就好了，如果不行再考虑是不是显卡驱动不匹配的问题
 
 
 
@@ -134,7 +132,7 @@ sudo adduser $USERNAME
 sudo mkdir /data/$USERNAME
 sudo chown -R $USERNAME /data/$USERNAME
 ```
-### 3.2 安装 `conda`
+### 3.2 安装 Anaconda
 从 [Anaconda 官网](https://www.anaconda.com/products/individual) 或者 [清华镜像站](https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=M&O=D) 下载并按提示安装。具体步骤如下：
 
 1. 找到所需版本的anaconda下载链接url，并在命令行中使用 `wget <url >` 将安装包下载到本地（当前目录下）
@@ -146,7 +144,6 @@ sudo chown -R $USERNAME /data/$USERNAME
 3. 安装完毕后，重启 shell，通过 `which python` 查看当前默认的 python 是不是 anaconda3 下的 python，如果是则说明安装正常
 
 4. 当前安装的 anaconda3 只能由安装的用户使用，通过编辑系统环境变量或者其他用户的环境变量，可以使得所有用户均能使用anaconda3。具体方法如下（以编辑系统环境变量为例，此时其他用户环境变量无需再次编辑）：
-
    ```bash
    vim /etc/profile
    # 编辑系统配置文件，在最后添加 'export PATH=/usr/local/anaconda3/bin:$PATH' 其中路径为 anaconda3 的 python 路径
@@ -168,7 +165,6 @@ sudo chown -R $USERNAME /data/$USERNAME
 #### `pip` 安装 TensorFlow
 参考 [TensorFlow 官方指南](https://www.tensorflow.org/install)
 TensorFlow (CPU 和 GPU) 2.x
-
 ```bash
 pip install --upgrade tensorflow
 ```
@@ -187,7 +183,7 @@ conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
 (2) 报错 `NotWritableError: The current user does not have write permissions to a required path.`：可能是安装 anaconda3 的时候使用了管理员权限，导致当前用户没有写入权限。可修改该 anaconda3 文件夹权限为当前管理员用户 `sudo chown -R <username> /usr/local/anaconda3 `  
 
-(3) 报错 `PackagesNotFoundError: The following packages are not available from current channels: ... `：更换conda源为清华源，即打开/创建源配置文件 `vim ~/.condarc`，然后用下面的内容替换原文件内容，保存退出。（注意：如需安装 pytorch 还需要运行以下命令再添加一个源 `conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/`)
+(3) 报错 `PackagesNotFoundError: The following packages are not available from current channels: ... `：更换conda源为清华源，即打开/创建源配置文件 `vim ~/.condarc`，然后用下面的内容替换原文件内容，保存退出。（注意：如需安装 pytorch 还需要运行以下命令再添加一个源 `conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/`)：
 
 ```
 channels:
@@ -210,7 +206,7 @@ custom_channels:
 ```
 
 
-### 3.4 安装VS Code
+### 3.4 安装 VS Code
 
 可以远程访问文件/文件夹/terminal，并像本地一样优雅地写代码调试的两个方法。
 #### VS Code [体验几乎完美] 
@@ -243,7 +239,7 @@ custom_channels:
 
 ### 3.5 安装 MATLAB
 以 MATLAB R2018b 为例，安装包可以从 bt 站等处下载linux版本。
-#### install from dual .iso files
+#### 从 .iso 文件 安装 MATLAB
 0. cd to the directory which contains the two .iso package(s)
 1. `sudo mkdir /mnt/matlab` make a directory to mount the matlab .iso package(s).
 2. `sudo mount -t auto -o loop R2018b_glnxa64_dvd1.iso /mnt/matlab/` mount the first DVD .iso file.
@@ -255,23 +251,22 @@ custom_channels:
 8. click *continue* install the package from the second DVD .iso file.
 9. `sudo umount /mnt/matlab` unmount the second DVD .iso file after installation.
 
-#### license
+#### 将 license 文件复制到 MATLAB 安装目录
+```
+# change current woring directory to the license's directory
+sudo cp license_standalone.lic /usr/local/MATLAB/R2018b/licenses/
+sudo cp ./R2018b/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018b/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so
+```
 
-10. ```bash
-    # change current woring directory to the license's directory
-    sudo cp license_standalone.lic /usr/local/MATLAB/R2018b/licenses/
-    sudo cp ./R2018b/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018b/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so
-    ```
+#### 将 MATLAB 加入 PATH 中
 
-##### PATH setting
-
-11. ```bash
-    sudo vim /etc/environment
-    # add matlab's bin directory path to the end of PATH, like
-    # PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/MATLAB/R2018b/bin/"
-    source /etc/environment
-    # now you can start matlab by typing 'matlab' in the command line
-    ```
+```
+sudo vim /etc/environment
+# add matlab's bin directory path to the end of PATH, like
+# PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/MATLAB/R2018b/bin/"
+source /etc/environment
+# now you can start matlab by typing 'matlab' in the command line
+```
 
 
 ### 3.6 安装其他应用软件
